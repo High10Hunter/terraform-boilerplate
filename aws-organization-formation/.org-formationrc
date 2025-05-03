@@ -1,0 +1,3 @@
+organizationFile = ./organization.yml
+stateBucketName = organization-formation-<account_id>
+profile = boilerplate-management

@@ -1,0 +1,11 @@
+project     = "terraform-boilerplate"
+region  = "us-east-1"
+
+### S3 state bucket ###
+backend_bucket_name = "boilerplate-dev-state-bucket"
+
+### OIDC repositories ###
+repositories = ["Organization/boilerplate-infrastructure"]
+
+### Monitoring ### 
+# monitoring_slack_webhook_url = "https://hooks.slack.com/services/TU9380IDJ/UIHFIUD034/sdhjjdkhwu3749"

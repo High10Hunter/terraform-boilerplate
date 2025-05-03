@@ -1,0 +1,27 @@
+project     = "boilerplate"
+region      = "us-east-1"
+domain_name = "boilerplate.com"
+
+### S3 state bucket ###
+backend_bucket_name = "boilerplate-dev-state-bucket"
+
+### OIDC repositories ###
+repositories = ["Organization/boilerplate-infrastructure"]
+
+### Monitoring ### 
+# monitoring_slack_webhook_url = "https://hooks.slack.com/services/TU9380IDJ/UIHFIUD034/sdhjjdkhwu3749"
+
+### VPC ###
+cidr_block                     = "10.0.0.0/16" # ip range: 10.0.0.0 --> 10.0.255.255 = 65536 hosts 
+public_subnet_cidr_block       = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidr_block      = ["10.0.3.0/24", "10.0.4.0/24", "10.0.5.0/24"]
+database_subnet_cidr_block     = ["10.0.6.0/27", "10.0.7.0/27"]
+rds_security_group_cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24", "10.0.5.0/24"]
+
+### RDS ###
+instance_class    = "db.t4g.micro"
+db_name           = "boilerplate"
+username          = "postgres"
+password          = "boilerplate-pA22w0rd"
+allocated_storage = 20
+
