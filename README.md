@@ -52,7 +52,7 @@
 ### 1) Prepare AWS Credentials 
 Ensure you have AWS credentials configured either through environment variables or AWS CLI configuration.
 
-### 2) Initialize project
+### 2) Initialize project 
 
 #### Select develop workspace (dev, stg, prod,...)
 
@@ -67,7 +67,9 @@ Copy the `terraform.tfvars.example` in the environment directory to new file `te
 
 #### Initialize project 
 ```bash
-terraform init
+# Can update and modify the script to suit specific cloud provider (in this case AWS)
+./terraform-init.sh <AWS_ACCOUNT_ID>
+# terraform init
 terraform plan --var-file="terraform.tfvars"
 terraform apply --var-file="terraform.tfvars"
 ```
