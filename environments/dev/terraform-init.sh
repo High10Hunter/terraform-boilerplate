@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export AWS_PAGER=""
+
 # Function to confirm AWS account
 confirm_aws_account() {
   local provided_account_id=$1
@@ -32,14 +34,19 @@ rm -rf .terraform.tfstate*
 rm -f terraform.tfstate.lock.hcl
 
 # Initialize Terraform with account-specific backend configuration
-bucket_name="terraform-${AWS_ACCOUNT_ID}-state-bucket"
-dynamodb_table="terraform-main-lock-table"
-region="us-west-2"
+bucket_name="terraform-boilerplate-${AWS_ACCOUNT_ID}-state-bucket"
+dynamodb_table="terraform-boilerplate-main-lock-table"
+region="us-east-1"
 
 echo "Checking if S3 bucket $bucket_name exists..."
 if ! aws s3api head-bucket --bucket "$bucket_name" 2>/dev/null; then
   echo "Bucket does not exist. Creating S3 bucket: $bucket_name"
-  aws s3api create-bucket --bucket "$bucket_name" --region "$region" --create-bucket-configuration LocationConstraint="$region"
+  if [ "$region" = "us-east-1" ]; then
+    aws s3api create-bucket --bucket "$bucket_name" --region "$region"
+  else
+    aws s3api create-bucket --bucket "$bucket_name" --region "$region" \
+      --create-bucket-configuration LocationConstraint="$region"
+  fi
 fi
 
 echo "Checking if DynamoDB table $dynamodb_table exists..."
